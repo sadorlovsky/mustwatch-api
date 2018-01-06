@@ -17,6 +17,7 @@
     "got": "^8.0.1",
     "micro": "^9.0.2",
     "micro-get": "^0.1.1",
+    "micro-jwt-auth": "^1.9.0",
     "micro-query": "^0.2.0",
     "microrouter": "^3.0.0"
   }
