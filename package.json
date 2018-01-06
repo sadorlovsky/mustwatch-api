@@ -20,5 +20,10 @@
     "micro-jwt-auth": "^1.9.0",
     "micro-query": "^0.2.0",
     "microrouter": "^3.0.0"
+  },
+  "env": {
+    "SECRET": "@secret",
+    "API_URL": "@api_url",
+    "API_KEY": "@api_key"
   }
 }

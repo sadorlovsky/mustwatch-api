@@ -5,13 +5,13 @@ const onlyGet = require('micro-get')
 const jwt = require('micro-jwt-auth')
 const got = require('got')
 
-module.exports = jwt(process.env.secret)(onlyGet(router(
+module.exports = jwt(process.env.SECRET)(onlyGet(router(
   get('/', async (req, res) => {
 
-    const response = await got(`${process.env.themoviedb_api_url}/search/movie`, {
+    const response = await got(`${process.env.API_URL}/search/movie`, {
       json: true,
       query: {
-        api_key: process.env.themoviedb_api_key,
+        api_key: process.env.API_KEY,
         ...req.query
       }
     })
