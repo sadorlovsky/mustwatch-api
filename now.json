@@ -1,5 +1,7 @@
-"env": {
-  "SECRET": "@secret",
-  "API_URL": "@api_url",
-  "API_KEY": "@api_key"
+{
+  "env": {
+    "SECRET": "@secret",
+    "API_URL": "@api_url",
+    "API_KEY": "@api_key"
+  }
 }
