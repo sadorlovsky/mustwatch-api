@@ -1,0 +1,23 @@
+{
+  "name": "mustwatch-api",
+  "version": "1.0.0",
+  "description": "Mustwatch API",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": "sadorlovsky/mustwatch-api",
+  "author": {
+    "name": "Zach Orlovsky",
+    "email": "sadorlovsky@gmail.com",
+    "url": "orlovsky.rocks"
+  },
+  "scripts": {
+    "start": "micro"
+  },
+  "dependencies": {
+    "got": "^8.0.1",
+    "micro": "^9.0.2",
+    "micro-get": "^0.1.1",
+    "micro-query": "^0.2.0",
+    "microrouter": "^3.0.0"
+  }
+}
