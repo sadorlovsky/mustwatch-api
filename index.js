@@ -7,7 +7,6 @@ const got = require('got')
 
 module.exports = jwt(process.env.SECRET)(onlyGet(router(
   get('/', async (req, res) => {
-
     const response = await got(`${process.env.API_URL}/search/movie`, {
       json: true,
       query: {
