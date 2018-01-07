@@ -16,6 +16,12 @@ module.exports = jwt(process.env.SECRET)(onlyGet(router(
       }
     })
 
+    const { headers } = response
+
+    Object.keys(headers).map(header => {
+      res.setHeader(header, headers[header])
+    })
+
     send(res, response.statusCode, response.body)
   })
 )))
