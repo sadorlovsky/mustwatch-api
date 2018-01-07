@@ -7,24 +7,27 @@ const got = require('got')
 
 module.exports = jwt(process.env.SECRET)(onlyGet(router(
   get('/', async (req, res) => {
-    const response = await got(`${process.env.API_URL}/search/movie`, {
-      json: true,
-      query: {
-        api_key: process.env.API_KEY,
-        ...req.query
+    try {
+      const response = await got(`${process.env.API_URL}/search/movie`, {
+        json: true,
+        query: {
+          api_key: process.env.API_KEY,
+          ...req.query
+        }
+      })
+
+      const { headers } = response
+
+      res.setHeader('x-ratelimit-limit', headers['x-ratelimit-limit'])
+      res.setHeader('x-ratelimit-remaining', headers['x-ratelimit-remaining'])
+      res.setHeader('x-ratelimit-reset', headers['x-ratelimit-reset'])
+
+      send(res, response.statusCode, response.body)
+    } catch (err) {
+      if (err.statusCode === 429) {
+        res.setHeader('retry-after', err.headers['retry-after'])
       }
-    })
-
-    const { headers } = response
-
-    res.setHeader('x-ratelimit-limit', headers['x-ratelimit-limit'])
-    res.setHeader('x-ratelimit-remaining', headers['x-ratelimit-remaining'])
-    res.setHeader('x-ratelimit-reset', headers['x-ratelimit-reset'])
-
-    if (response.statusCode === 429) {
-      res.setHeader('retry-after', headers['retry-after'])
+      send(res, err.statusCode, err)
     }
-
-    send(res, response.statusCode, response.body)
   })
 )))
