@@ -22,6 +22,10 @@ module.exports = jwt(process.env.SECRET)(onlyGet(router(
     res.setHeader('x-ratelimit-remaining', headers['x-ratelimit-remaining'])
     res.setHeader('x-ratelimit-reset', headers['x-ratelimit-reset'])
 
+    if (response.statusCode === 429) {
+      res.setHeader('retry-after', headers['retry-after'])
+    }
+
     send(res, response.statusCode, response.body)
   })
 )))
