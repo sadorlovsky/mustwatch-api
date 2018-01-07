@@ -18,9 +18,9 @@ module.exports = jwt(process.env.SECRET)(onlyGet(router(
 
     const { headers } = response
 
-    Object.keys(headers).map(header => {
-      res.setHeader(header, headers[header])
-    })
+    res.setHeader('x-ratelimit-limit', headers['x-ratelimit-limit'])
+    res.setHeader('x-ratelimit-remaining', headers['x-ratelimit-remaining'])
+    res.setHeader('x-ratelimit-reset', headers['x-ratelimit-reset'])
 
     send(res, response.statusCode, response.body)
   })
